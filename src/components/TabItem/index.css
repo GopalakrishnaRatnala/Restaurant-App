@@ -1,0 +1,30 @@
+.tab-button {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+  margin: 0 10px;
+  white-space: nowrap;
+  padding: 10px;
+}
+
+@media (max-width: 575.98px) {
+  .tab-button {
+    font-size: 18px;
+    width: 180px;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .tab-button {
+    font-size: 20px;
+    width: 180px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .tab-button {
+    font-size: 22px;
+    width: 150px;
+  }
+}
