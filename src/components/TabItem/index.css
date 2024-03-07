@@ -17,14 +17,10 @@
 
 @media (min-width: 576px) and (max-width: 767.98px) {
   .tab-button {
-    font-size: 20px;
     width: 180px;
   }
 }
-
-@media (min-width: 768px) and (max-width: 991.98px) {
-  .tab-button {
-    font-size: 22px;
-    width: 150px;
-  }
+.selected-tab {
+  color: #fc8019;
+  text-decoration: underline;
 }

@@ -5,11 +5,12 @@ import Header from '../Header'
 import TabItem from '../TabItem'
 import MenuItem from '../MenuItem'
 
+import CartContext from '../../context/CartContext'
+
 class Home extends Component {
   state = {
     tabItems: [],
     menuCategory: '',
-    cartCount: 0,
     tableMenu: [],
     restaurantName: '',
   }
@@ -41,65 +42,53 @@ class Home extends Component {
       tabItems: updatedData[0].tableMenuList.map(item => item.menu_category),
       restaurantName: updatedData[0].restaurantName,
     })
+    const {restaurantName} = this.state
+
+    const {addRestaurantName} = this.context
+    addRestaurantName(restaurantName)
   }
 
   changeCategory = category => {
     this.setState({menuCategory: category})
   }
 
-  onClickAddCart = (id, array) => {
-    console.log(array)
-    this.setState(prevState => ({cartCount: prevState.cartCount + 1}))
-  }
-
-  onClickRemoveCart = (id, array) => {
-    console.log(array)
-    const index = array.findIndex(eachItem => eachItem.dish_id === id)
-    const reqDishObj = array[index]
-    console.log(reqDishObj.quantity)
-    if (reqDishObj.quantity !== 0) {
-      this.setState(prevState => ({
-        cartCount: prevState.cartCount > 0 ? prevState.cartCount - 1 : 0,
-      }))
-    }
-  }
-
   render() {
-    const {
-      tableMenu,
-      menuCategory,
-      cartCount,
-      tabItems,
-      restaurantName,
-    } = this.state
     return (
-      <>
-        <Header cartCount={cartCount} restaurantName={restaurantName} />
-        <ul className="tabs-container">
-          {tabItems.map(eachTab => (
-            <TabItem
-              eachTab={eachTab}
-              key={eachTab}
-              changeCategory={this.changeCategory}
-            />
-          ))}
-        </ul>
-        <ul className="menu-items-container">
-          {tableMenu.map(
-            eachMenuItem =>
-              menuCategory === eachMenuItem.menu_category && (
-                <MenuItem
-                  key={eachMenuItem.menu_category_id}
-                  eachMenuItem={eachMenuItem}
-                  onClickAddCart={this.onClickAddCart}
-                  onClickRemoveCart={this.onClickRemoveCart}
-                />
-              ),
-          )}
-        </ul>
-      </>
+      <CartContext.Consumer>
+        {() => {
+          const {tableMenu, menuCategory, tabItems} = this.state
+          return (
+            <>
+              <Header />
+              <ul className="tabs-container">
+                {tabItems.map(eachTab => (
+                  <TabItem
+                    eachTab={eachTab}
+                    key={eachTab}
+                    changeCategory={this.changeCategory}
+                    menuCategory={menuCategory}
+                  />
+                ))}
+              </ul>
+              <ul className="menu-items-container">
+                {tableMenu.map(
+                  eachMenuItem =>
+                    menuCategory === eachMenuItem.menu_category && (
+                      <MenuItem
+                        key={eachMenuItem.menu_category_id}
+                        eachMenuItem={eachMenuItem}
+                      />
+                    ),
+                )}
+              </ul>
+            </>
+          )
+        }}
+      </CartContext.Consumer>
     )
   }
 }
+
+Home.contextType = CartContext
 
 export default Home

@@ -4,31 +4,23 @@
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid rgb(243, 243, 243);
-  padding-left: 15px;
-  padding-right: 15px;
+  padding: 10px 20px;
 }
 .cart-icon {
   font-size: 30px;
+  margin-left: 10px;
 }
 .cart-count-badge {
-  background-color: #bfdbfe;
-  color: #0967d2;
+  background-color: #fc8019;
+  color: #ffffff;
   font-family: 'Roboto';
   font-size: 12px;
   font-weight: 500;
   border-radius: 50%;
-  padding-left: 5px;
-  padding-top: 2px;
-  padding-right: 5px;
-  padding-bottom: 2px;
-  margin-left: 8px;
+  padding: 2px 5px;
+  align-self: flex-start;
 }
 
-@media screen and (min-width: 768px) {
-  .cart-count-badge {
-    background-color: #e6f6ff;
-  }
-}
 .cart-myOrders-container {
   display: flex;
   flex-direction: row;
@@ -42,4 +34,37 @@
   .myOrders-text {
     display: block;
   }
+}
+.logout-desktop-btn {
+  font-family: 'Roboto';
+  font-weight: 600;
+  font-size: 10px;
+  padding: 8px 16px;
+  color: #ffffff;
+  background-color: #fc8019;
+  border: none;
+  border-radius: 4px;
+  margin-left: 14px;
+  cursor: pointer;
+  outline: none;
+}
+.logout-cart-container {
+  display: flex;
+  align-items: center;
+}
+.nav-link {
+  text-decoration: none;
+}
+.restaurant-name {
+  font-size: 25px;
+  font-weight: 700;
+  color: black;
+}
+.cart-button {
+  cursor: pointer;
+  outline: none;
+  background-color: transparent;
+  border: none;
+  padding: 0px;
+  margin: 0px;
 }
